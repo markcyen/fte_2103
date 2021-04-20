@@ -1,12 +1,10 @@
 class FoodTruck
   attr_reader :name,
-              :inventory,
-              :incremental_amount
+              :inventory
 
   def initialize(name)
     @name = name
     @inventory = Hash.new { |hash, key| hash[key] = 0 }
-    @incremental_amount = 0
   end
 
   def check_stock(item)
@@ -18,6 +16,12 @@ class FoodTruck
       @inventory[item] = number
     else
       @inventory[item] += number
+    end
+  end
+
+  def potential_revenue
+    @inventory.sum do |item, number|
+      item.price * number
     end
   end
 end
