@@ -13,9 +13,11 @@ class FoodTruck
     @inventory[item]
   end
 
-  def stock(item, amount)
-    @inventory[item] = amount
-    @incremental_amount += amount
-    @inventory[item] = @incremental_amount
+  def stock(item, number)
+    if @inventory[item].nil?
+      @inventory[item] = number
+    else
+      @inventory[item] += number
+    end
   end
 end
